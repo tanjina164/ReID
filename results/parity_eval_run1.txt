@@ -1,0 +1,24 @@
+Warning: Cython evaluation is UNAVAILABLE
+authors' CYTHON_EVAL_AVAI: False (False => pure-Python metric, same as here)
+PASS | hand example: same-pid+same-cam removed, AP=0.5, CMC=[0,1,1,1] | cmc=[0.0, 1.0, 1.0, 1.0] mAP=0.500000
+PASS | hand example: perfect retrieval -> mAP=1, R1=1
+PASS | plain: CMC array identical to authors' (50 values) | maxdiff=0.00e+00
+PASS | plain: mAP identical to authors' | authors 0.999276 ours 0.999276
+PASS | plain: R1/R5/R10/R20 == cmc[0,4,9,19] | R1=1.0000 R5=1.0000 mAP=0.9993
+PASS | rerank: CMC array identical to authors' (50 values) | maxdiff=0.00e+00
+PASS | rerank: mAP identical to authors' | authors 1.000000 ours 1.000000
+PASS | rerank: R1/R5/R10/R20 == cmc[0,4,9,19] | R1=1.0000 R5=1.0000 mAP=1.0000
+PASS | rerank run differs from plain run (rerank is actually applied) | plain 0.9993 vs rerank 1.0000
+PASS | re_ranking array identical (150x700) | maxdiff=0.00e+00
+OK   | NEG-CONTROL re_ranking k1=19: DETECTED
+OK   | NEG-CONTROL re_ranking k2=7: DETECTED
+OK   | NEG-CONTROL re_ranking lambda=0.31: DETECTED
+OK   | NEG-CONTROL camera filter off: DETECTED | mAP 0.9993 vs 0.9994
+OK   | NEG-CONTROL euclidean instead of cosine: DETECTED | mAP 0.9993 vs 0.9976
+PASS | extract_features == authors' loop (96 query imgs, bs 32), bitwise | shape (96, 2048)
+PASS | extract_features restores model.train() mode
+PASS | pids/camids from loader are numpy ints
+PASS | extract_features batch-size independent (bs 7 vs 32), rel<1e-4 | rel=6.90e-07
+OK   | NEG-CONTROL model in train-mode (BN batch stats): DETECTED
+
+SUMMARY: ALL PASS
