@@ -1,0 +1,27 @@
+randomized BN modules: 11
+state_dict keys: authors 399 | ours 399
+only in authors: []
+only in ours: []
+shape mismatches: []
+params excl classifier (M): authors 27.464286 | ours 27.464286
+PASS | eval fwd y: rel_err=0.000e+00 (thr 1e-04)
+PASS | eval fwd f: rel_err=0.000e+00 (thr 1e-04)
+PASS | eval fwd a_head0: rel_err=0.000e+00 (thr 1e-04)
+PASS | eval fwd a_head1: rel_err=0.000e+00 (thr 1e-04)
+PASS | eval fwd a_upper0: rel_err=0.000e+00 (thr 1e-04)
+PASS | eval fwd a_upper1: rel_err=0.000e+00 (thr 1e-04)
+PASS | eval fwd a_lower0: rel_err=0.000e+00 (thr 1e-04)
+PASS | eval fwd a_lower1: rel_err=0.000e+00 (thr 1e-04)
+PASS | eval fwd a_shoes0: rel_err=0.000e+00 (thr 1e-04)
+PASS | eval fwd a_shoes1: rel_err=0.000e+00 (thr 1e-04)
+PASS | train loss xent: rel_err=0.000e+00 (thr 1e-04)
+PASS | train loss triplet: rel_err=0.000e+00 (thr 1e-04)
+PASS | train loss mask: rel_err=0.000e+00 (thr 1e-04)
+PASS | train loss total: rel_err=0.000e+00 (thr 1e-04)
+values: xent 6.78765 tri 0.54136 mask 0.80239 total 7.73020
+PASS | train fwd f: rel_err=0.000e+00 (thr 1e-04)
+grad params: 207 | grad None mismatches: 0 | worst: 
+PASS | grad worst param: rel_err=0.000e+00 (thr 1e-03)
+PASS | BN buffers after train fwd: rel_err=0.000e+00 (thr 1e-04)
+
+SUMMARY: ALL PASS

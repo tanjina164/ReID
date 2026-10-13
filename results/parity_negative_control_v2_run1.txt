@@ -1,0 +1,17 @@
+OK   | baseline model (unmutated): rel_err=0.000e+00 -> clean (as expected)
+OK   | model bug: CAM BN scale x1.001: rel_err=3.048e-02 -> DETECTED
+OK   | model bug: SAM BN scale x1.001: rel_err=1.001e-03 -> DETECTED
+OK   | model bug: attention channel swap: rel_err=9.764e-01 -> DETECTED
+OK   | model bug: layer4 stride 2: rel_err=1.825e-01 -> DETECTED
+reference values: xent 19.1316 tri 0.5414 mask 0.8078 total 20.0768
+OK   | baseline loss [total]: rel_err=0.000e+00 -> clean (as expected)
+OK   | baseline loss [xent]: rel_err=0.000e+00 -> clean (as expected)
+OK   | baseline loss [tri]: rel_err=0.000e+00 -> clean (as expected)
+OK   | baseline loss [mask]: rel_err=0.000e+00 -> clean (as expected)
+OK   | loss bug: alpha 0.4 [total]: rel_err=4.023e-03 -> DETECTED
+OK   | loss bug: margin 0.31 [tri]: rel_err=1.847e-02 -> DETECTED
+OK   | loss bug: label-smooth eps 0.11 [xent]: rel_err=7.009e-05 -> DETECTED
+OK   | loss bug: no label smoothing [xent]: rel_err=7.017e-04 -> DETECTED
+OK   | loss bug: mask head<->upper swap [mask]: rel_err=8.623e-03 -> DETECTED
+
+SUMMARY: TEST IS SENSITIVE (thr 1e-6): baselines clean, all injected bugs detected

@@ -1,0 +1,12 @@
+OK   | baseline (unmutated): rel_err=0.000e+00 -> clean (as expected)
+OK   | model bug: CAM BN scale x1.1 (IAT2.W1): rel_err=6.618e-01 -> DETECTED
+OK   | model bug: SAM BN scale x1.1 (IAT3.W2): rel_err=1.000e-01 -> DETECTED
+OK   | model bug: attention channel swap (head<->upper): rel_err=9.764e-01 -> DETECTED
+OK   | model bug: layer4 stride 2 instead of 1: rel_err=1.825e-01 -> DETECTED
+OK   | baseline loss total: rel_err=0.000e+00 -> clean (as expected)
+OK   | loss bug: alpha 0.4: rel_err=1.038e-02 -> DETECTED
+OK   | loss bug: margin 0.31: rel_err=1.294e-03 -> DETECTED
+BAD  | loss bug: label-smooth eps 0.11: rel_err=1.740e-05 -> NOT DETECTED
+BAD  | loss bug: mask part order swapped: rel_err=3.633e-05 -> NOT DETECTED
+
+SUMMARY: WEAK TEST, problems: ['loss bug: label-smooth eps 0.11', 'loss bug: mask part order swapped']

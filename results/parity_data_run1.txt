@@ -1,0 +1,46 @@
+authors' ToTensor runs unpatched on this env
+PASS | ToTensor (authors') == torchvision to_tensor (RGB, L)
+PASS | ToTensor (ours) == torchvision to_tensor (RGB, L)
+counts ours: train 12936 (751 ids) | query 3368 | gallery 15913
+PASS | counts train/query/gallery == 12936/3368/15913, 751 ids
+PASS | train image set identical
+PASS | train camid + 4 mask paths same, relabel is a consistent bijection | bad=0
+   relabel identical to authors' set-order labels: True
+PASS | query: (path,pid,camid) identical
+PASS | gallery: (path,pid,camid) identical
+PASS | mask folders == train image stems (12936)
+PASS | foreground.png exists for all train images
+PASS | mask size == image size and values subset of {0,255} (300 sampled x 4) | size_bad=0 val_bad=0
+PASS | sampler seed 0: same index order + RNG state
+PASS | sampler seed 1: same index order + RNG state
+PASS | sampler seed 2: same index order + RNG state
+PASS | sampler len equal | len=11876
+OK   | NEG-CONTROL sampler different seed: DETECTED
+PASS | every group of 4 has one ID
+   distinct IDs per batch of 64: mean 15.85 min 15 max 16 (16 would be guaranteed only with a PK sampler)
+PASS | joint transform: image identical (200 samples)
+PASS | joint transform: 4 masks identical (200 samples)
+PASS | pid/camid identical
+PASS | python-RNG state after each sample identical
+PASS | coverage: flip and erase both exercised | flipped=112/200 erased=109/200
+OK   | NEG-CONTROL different seed: DETECTED
+OK   | NEG-CONTROL erase off: DETECTED
+OK   | NEG-CONTROL erase value zeros: DETECTED
+OK   | NEG-CONTROL std swapped: DETECTED
+OK   | NEG-CONTROL mask flipped vs image: DETECTED
+OK   | NEG-CONTROL mask order swapped: DETECTED
+authors' T.Resize(interpolation=3) works here
+PASS | eval transform identical (200 query/gallery images) + pid/camid
+OK   | NEG-CONTROL eval bilinear instead of bicubic: DETECTED
+len(sampler): 11876 | len(loader): 185
+PASS | len(loader) == len(sampler)//64
+   batch 0: shapes_ok=True groups_ok=True mask_range_ok=True distinct_ids=16 img_mean=-0.130 mask_mean=0.107
+   batch 1: shapes_ok=True groups_ok=True mask_range_ok=True distinct_ids=16 img_mean=-0.106 mask_mean=0.113
+   batch 2: shapes_ok=True groups_ok=True mask_range_ok=True distinct_ids=16 img_mean=-0.058 mask_mean=0.116
+PASS | DataLoader batches (shape, 4-instance groups, mask in [0,1])
+   3 batches in 2.5s (incl. worker start-up)
+
+SUMMARY: ALL PASS
+
+--- stderr (tail) ---
+authors_cell25:ToTensor:35: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
