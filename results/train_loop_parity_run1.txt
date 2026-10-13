@@ -1,0 +1,28 @@
+authors' cell 27 values: {'optim': 'adam', 'lr': 0.00035, 'weight_decay': 0.0005, 'stepsize': [20, 40], 'gamma': 0.1, 'max_epoch': 60, 'train_batch': 64, 'num_instances': 4, 'margin': 0.3, 'alpha': 0.5, 'mode': 'ce', 'distance': 'cosine', 'flip_cnt': 1, 'rerank': False, 'height': 256, 'width': 128, 'seed': 1}
+PASS | authors' hyper-parameters match the reproduction config
+PASS | authors' main(): scheduler.step() comes before train(...) inside the epoch loop | pos 5508 < 5573
+authors-order LR transitions (1-based epoch, lr): [(1, '3.50e-04'), (20, '3.50e-05'), (40, '3.50e-06')]
+PASS | LR trace (authors' order) == derived 19/20/21 epochs of 3.5e-4/3.5e-5/3.5e-6
+modern-order LR transitions: [(1, '3.50e-04'), (21, '3.50e-05'), (41, '3.50e-06')]
+OK   | NEG-CONTROL scheduler.step() after the epoch (modern order): DETECTED
+Downloading: "https://download.pytorch.org/models/resnet50-19c8e357.pth" to /root/.cache/torch/hub/checkpoints/resnet50-19c8e357.pth
+batches: 4 | x (64, 3, 256, 128) | masks (64, 4, 256, 128) | pids (64,)
+authors' train() printed: Epoch1 Time:4.1s Data:0.1s xentLoss:6.6936 triLoss:0.5813 MaskLoss:0.8110 Acc:0.78%
+PASS | sanity: 4 Adam steps actually moved the weights (authors' run) | max rel change 1.31e+14 at IAT2.SAM.module_l.fsm.1.running_mean
+ours: {'xent': 6.693577170372009, 'tri': 0.5812856107950211, 'mask': 0.8110296726226807, 'acc': 0.0078125, 'n': 256}
+PASS | params+buffers after 4 steps: authors' train() vs ours, rel<1e-5 | worst rel 0.000e+00 at '', int buffers equal=True
+PASS | epoch metrics (xent/tri/mask/acc) match the authors' printed line | authors [6.6936, 0.5813, 0.811, 0.78] | ours [6.6936, 0.5813, 0.811, 0.78]
+peak GPU memory (both models resident, batch 64): 5.70 GiB | 4 iters incl. warm-up: 2.9s (rough)
+OK   | NEG-CONTROL alpha 0.4: DETECTED | worst rel 4.69e+01
+OK   | NEG-CONTROL weight_decay 0: DETECTED | worst rel 2.45e+01
+OK   | NEG-CONTROL lr 3.5e-5: DETECTED | worst rel 1.12e+00
+OK   | NEG-CONTROL batch order reversed: DETECTED | worst rel 2.26e+01
+
+SUMMARY: ALL PASS
+
+--- stderr (tail) ---
+
+  0%|          | 0.00/97.8M [00:00<?, ?B/s]
+  6%|▌         | 5.75M/97.8M [00:00<00:01, 60.0MB/s]
+ 51%|█████     | 49.5M/97.8M [00:00<00:00, 294MB/s] 
+100%|██████████| 97.8M/97.8M [00:00<00:00, 365MB/s]
