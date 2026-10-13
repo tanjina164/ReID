@@ -97,3 +97,33 @@ python 3.13.15 | torch 2.11.0+cu128 | torchvision 0.26.0+cu128 | numpy 2.1.3 | P
 | results/parity_model_loss_run1.txt | cb6f75270a92 |
 | results/parity_negative_control_run1.txt | db18ee34225c |
 | results/parity_negative_control_v2_run1.txt | 1efdee052a53 |
+
+
+## Train / run / pretrained-load parity
+Env: 2x Tesla T4, 1 GPU used, FP32. All statements below come from the files in results/.
+- train loop parity (results/train_loop_parity_run1.txt): SUMMARY ALL PASS. Authors' cell 27 hyper-parameters match;
+  scheduler.step() before train(); LR 3.5e-4 for epochs 1-19, 3.5e-5 for 20-39, 3.5e-6 for 40-60 (1-based);
+  authors' real train() vs scanet.train on 4 real batches: params+buffers worst rel 0.0, epoch metrics equal;
+  4 negative controls detected. Limitation: only 4 steps compared.
+- run / smoke (results/run_smoke_run1.txt): SUMMARY FAILED with 1 check, caused by a wrong hard-coded threshold
+  (len(keys) > 300) written by the test author; the log is kept unchanged. All other checks PASS: 2-epoch smoke,
+  finite losses, 185*64 samples/epoch, resume (RNG restored) bitwise equal to straight run (floor 0), resume without
+  RNG restore detected (worst rel 2.7). Epoch time 113.7-121.6 s (deterministic=True, 1 GPU).
+  Full-size eval: extract 63.1 s, metrics incl. rerank 249.7 s, peak host RSS 11.16 GiB.
+  The 2-epoch smoke metrics are NOT a result.
+- pretrained load (results/pretrained_load_run1.txt): SUMMARY ALL PASS. 265 non-fc tensors equal resnet50-19c8e357,
+  file has no num_batches_tracked, fc.* not loaded, 4 negative controls detected.
+Not verified yet: eval parity on real features vs authors' eval; BN init behaviour of authors' code vs ours;
+deterministic=False epoch time; any full 60-epoch run.
+
+Provenance (sha256[:12] at write time)
+| file | sha256[:12] |
+|---|---|
+| scanet/train.py | 0cdb3b1b340d |
+| scanet/run.py | 67ab5e04d7c3 |
+| tests/test_train.py | 42bb6d8fd690 |
+| tests/test_run.py | 93e523641974 |
+| tests/test_pretrained.py | a974fc401e8f |
+| results/train_loop_parity_run1.txt | c0248810f08e |
+| results/run_smoke_run1.txt | 20d14e2a9ed9 |
+| results/pretrained_load_run1.txt | 23a20036e637 |

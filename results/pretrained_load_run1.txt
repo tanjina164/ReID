@@ -1,0 +1,13 @@
+file keys 267 | non-fc 265 | fc ['fc.weight', 'fc.bias'] | num_batches_tracked in file 0 | model keys 399 | model-only keys 134
+PASS | every non-fc file key exists in the model | missing []
+PASS | every non-fc file tensor equals the model tensor (shape+value) | 265 compared, mismatches 0 []
+PASS | model-only keys are only num_batches_tracked or new layers (IAT2/IAT3/bn/classifier) | model-only 134, unexpected []
+PASS | fc.* is not in the model (classifier is a new Linear)
+PASS | model-only num_batches_tracked are fresh (0) | 64 keys
+PASS | no new-layer key is overwritten by the file | []
+OK   | NEG-CONTROL one element perturbed by 1e-3: DETECTED | layer4.2.bn3.running_var
+OK   | NEG-CONTROL a backbone key removed: DETECTED | layer1.0.conv1.weight
+OK   | NEG-CONTROL unexpected extra layer in the model: DETECTED
+OK   | NEG-CONTROL pretrained=False: DETECTED | 265 mismatching tensors
+
+SUMMARY: ALL PASS
