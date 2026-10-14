@@ -1,0 +1,10 @@
+   model_final_epoch2.pt 111.01 MB (uncompressed)
+   attempt1/result.json 0.00 MB (uncompressed)
+   attempt1_config.json 0.00 MB (uncompressed)
+   MANIFEST.json 0.00 MB (uncompressed)
+PASS | zip size 103.1 MB in [90,110]
+PASS | zip CRC test
+PASS | model sha256 == manifest
+PASS | all 399 tensors bitwise equal to the full checkpoint
+PASS | strict load_state_dict into SCANet(ncls=751)
+SUMMARY: ALL PASS

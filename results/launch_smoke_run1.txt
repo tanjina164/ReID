@@ -1,0 +1,14 @@
+killed A1 after 240s | total 734s | exit codes A2=0 B=0
+--- A1.log: PLAN {"state": "fresh", "attempt": 1, "out_dir": "/kaggle/working/runs_smoke/seed100/attempt1", "resume": null, "resume_epoch": 0} | DEVICE {"visible": "0", "n": 1, "name": "Tesla T4", "uuid": "eb8f7a78-1c08-d7b4-19ea-571cf46b1da5 || EPOCH {"epoch": 1, "lr": 0.00035, "time_s": 124.31673169136047, "xent": 5.243423639761435, "tri": 0.3604385656279487, "mask": 0.6971261382102967, "acc": 0.16182432432432434, "n": 11840}
+
+--- A2.log: PLAN {"state": "resume", "attempt": 2, "out_dir": "/kaggle/working/runs_smoke/seed100/attempt2", "resume": "/kaggle/working/runs_smoke/seed100/attempt1/ckpt_epoch1.pt", "resume_epoch": 1} | DEVICE {"visible": "0", "n": 1, "name":  || EPOCH {"epoch": 2, "lr": 0.00035, "time_s": 126.91817784309387, "xent": 3.0116067164653058, "tri": 0.19868855661637075, "mask": 0.6235975188177985, "acc": 0.5293074324324324, "n": 11840}
+
+--- B.log: PLAN {"state": "fresh", "attempt": 1, "out_dir": "/kaggle/working/runs_smoke/seed101/attempt1", "resume": null, "resume_epoch": 0} | DEVICE {"visible": "1", "n": 1, "name": "Tesla T4", "uuid": "ef47c79e-5800-5dee-8ead-eea7f24a0845 || EPOCH {"epoch": 1, "lr": 0.00035, "time_s": 123.89308023452759, "xent": 5.166519507846317, "tri": 0.34645122950141494, "mask": 0.6973369575835563, "acc": 0.17145270270270271, "n": 11840}
+ || EPOCH {"epoch": 2, "lr": 0.00035, "time_s": 131.11481738090515, "xent": 2.968062268721091, "tri": 0.19595393810320544, "mask": 0.6216050396094451, "acc": 0.5516047297297297, "n": 11840}
+
+A2 resumed_from_epoch=1 logged epochs=[2] | B logged epochs=[1, 2]
+eval keys A2=['plain', 'rerank'] B=['plain', 'rerank'] (SMOKE, NOT A RESULT)
+peak_rss_gib A2=11.05 B=10.99 | peak system RAM used (all) = 19.6 GiB of 31
+configs: ['attempt1_config.json', 'attempt1_config.json', 'attempt2_config.json']
+GPU util % (max, mean over samples where >0) / mem MiB max: gpu0: 100 / 98 / 6741 | gpu1: 100 / 99 / 6561
+full ckpt 332.5 MB | model-only fp32 111.0 MB | model-only zip 103.1 MB
