@@ -1,0 +1,53 @@
+== start seeds 0 1 (2 epochs, ckpt_every 1) ==
+started seed 0 on GPU 0 pid 887 | fresh -> attempt1 resume_epoch=0 | log /kaggle/working/runs_phasetest/seed0/launch_20261014_042801.log
+started seed 1 on GPU 1 pid 888 | fresh -> attempt1 resume_epoch=0 | log /kaggle/working/runs_phasetest/seed1/launch_20261014_042801.log
+PASS | start while running refused: REFUSING: seed 0 already running (pids ['887'])
+-- status at 20s --
+seed 0: RUNNING | no epoch yet
+seed 1: RUNNING | no epoch yet
+0, 0 %, 3 MiB || 1, 0 %, 3 MiB | RAM used 2 GiB
+-- status at 320s --
+seed 0: RUNNING | ep 2/2 lr 3.5e-04 xent 2.987 tri 0.201 mask 0.625 acc 0.548 | ~128s/ep, ~0 min left (+eval)
+seed 1: RUNNING | ep 2/2 lr 3.5e-04 xent 2.977 tri 0.194 mask 0.625 acc 0.541 | ~127s/ep, ~0 min left (+eval)
+0, 100 %, 6561 MiB || 1, 92 %, 6561 MiB | RAM used 7 GiB
+-- status at 621s --
+seed 0: RUNNING | ep 2/2 lr 3.5e-04 xent 2.987 tri 0.201 mask 0.625 acc 0.548 | ~128s/ep, ~0 min left (+eval)
+seed 1: RUNNING | ep 2/2 lr 3.5e-04 xent 2.977 tri 0.194 mask 0.625 acc 0.541 | ~127s/ep, ~0 min left (+eval)
+0, 0 %, 6561 MiB || 1, 0 %, 6561 MiB | RAM used 11 GiB
+== final status ==
+seed 0: FINISHED | ep 2/2 lr 3.5e-04 xent 2.987 tri 0.201 mask 0.625 acc 0.548
+seed 1: FINISHED | ep 2/2 lr 3.5e-04 xent 2.977 tri 0.194 mask 0.625 acc 0.541
+0, 0 %, 0 MiB || 1, 0 %, 0 MiB | RAM used 2 GiB
+PASS | both seeds finished (result.json present)
+PASS | seed 0: epochs [1,2], plain+rerank (SMOKE, NOT A RESULT)
+PASS | seed 1: epochs [1,2], plain+rerank (SMOKE, NOT A RESULT)
+PASS | seeds ran on different GPUs ['eb8f7a78-1c08-d7b4-19ea-571cf46b1da5', 'ef47c79e-5800-5dee-8ead-eea7f24a0845']
+PASS | start on finished seed refused: REFUSING: seed 0 finished: /kaggle/working/runs_phasetest/seed0/attempt1
+== pack ==
+   model_final_epoch2.pt 111.01 MB (uncompressed)
+   attempt1/result.json 0.00 MB (uncompressed)
+   attempt1_config.json 0.00 MB (uncompressed)
+   launch_20261014_042801.log 0.00 MB (uncompressed)
+   MANIFEST.json 0.00 MB (uncompressed)
+seed 0:
+  PASS | zip size 103.1 MB in [90,110]
+  PASS | zip CRC test
+  PASS | model sha256 == manifest
+  PASS | all 399 tensors bitwise equal to the full checkpoint
+  PASS | strict load_state_dict into SCANet(ncls=751)
+   model_final_epoch2.pt 111.01 MB (uncompressed)
+   attempt1/result.json 0.00 MB (uncompressed)
+   attempt1_config.json 0.00 MB (uncompressed)
+   launch_20261014_042801.log 0.00 MB (uncompressed)
+   MANIFEST.json 0.00 MB (uncompressed)
+seed 1:
+  PASS | zip size 103.1 MB in [90,110]
+  PASS | zip CRC test
+  PASS | model sha256 == manifest
+  PASS | all 399 tensors bitwise equal to the full checkpoint
+  PASS | strict load_state_dict into SCANet(ncls=751)
+PASS | seed 0 zip 103.1 MB, has launch log: ['launch_20261014_042801.log']
+PASS | seed 0 verify file has no FAIL
+PASS | seed 1 zip 103.1 MB, has launch log: ['launch_20261014_042801.log']
+PASS | seed 1 verify file has no FAIL
+SUMMARY: ALL PASS

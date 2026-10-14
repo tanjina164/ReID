@@ -127,3 +127,14 @@ Provenance (sha256[:12] at write time)
 | results/train_loop_parity_run1.txt | c0248810f08e |
 | results/run_smoke_run1.txt | 20d14e2a9ed9 |
 | results/pretrained_load_run1.txt | 23a20036e637 |
+
+
+## Launcher / phase / pack tests (2026-10-14)
+All statements come from results/launch_smoke_run1.txt, results/pack_smoke_run1.txt, results/phase_test_run1.txt.
+- 2 seeds in parallel on 2 T4 (CUDA_VISIBLE_DEVICES pin, different GPU uuid): GPU util 92-100%, ~6.6 GiB GPU memory each,
+  epoch time 122-134 s (single GPU 113-121 s), peak system RAM 19.6 GiB of 31 during parallel eval.
+- Kill + relaunch resumed from epoch 1 into attempt2 (resumed_from_epoch=1, only epoch 2 trained).
+- phase.py start refuses a running seed and a finished seed; pack gives a 103.1 MiB eval-only ZIP (399 tensors bitwise equal
+  to the full checkpoint, strict load into SCANet(751)). Full checkpoint 332.5 MiB. All smoke metrics are NOT results.
+- Parallel seed 0 epoch 1-2 losses equal the earlier single-GPU smoke digit by digit (deterministic=True).
+Decision: Experiment A uses 60 epochs. Not verified: any 60-epoch run, fresh-notebook run, persistence after session restart.
