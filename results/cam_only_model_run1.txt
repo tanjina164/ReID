@@ -1,0 +1,17 @@
+/kaggle/working/ReID/tests/test_cam_only.py:19: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  chk(float(cam.IAT2.W1[1].weight.abs().sum()) == 0 and float(cam.IAT3.W1[1].bias.abs().sum()) == 0, "W1 BN zero-init kept")
+params excl. classifier: full 27.464286 M | cam_only 24.833624 M | diff 2.630662 M
+PASS | cam_only has fewer params than full
+PASS | no SAM/g/W2 keys in cam_only state_dict (found: [])
+PASS | IAT keys are only sa/W1
+PASS | W1 BN zero-init kept
+PASS | 6 outputs (got 6)
+PASS | y (4, 751) f (4, 2048)
+PASS | part maps IAT2 (4, 1, 32, 16) IAT3 (4, 1, 16, 8)
+PASS | all params get grad (None: [])
+PASS | c=512: sa(z) of cam_only == sa(z) of full IAT (max diff 0.00e+00)
+PASS | c=512: CAM changes the feature (z != x)
+PASS | c=1024: sa(z) of cam_only == sa(z) of full IAT (max diff 0.00e+00)
+PASS | c=1024: CAM changes the feature (z != x)
+TEST: ALL PASS
